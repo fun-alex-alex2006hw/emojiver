@@ -148,11 +148,14 @@
   function _positionWidget(el, config) {
     var elPos = _getOffset(el);
     var style = {};
-    style.left = elPos.x + 'px';
+    var leftFactor = config.boxLeftFactor ? config.boxLeftFactor : 0;
+    var leftPos = elPos.x - config.boxWidth + leftFactor;
+    leftPos = leftPos < 0 ? 0 : leftPos;
+    style.left = leftPos + 'px';
     switch(config.position) {
       case 'top':
         if(elPos.y < config.inputHeight) {
-          style.top= config.inputHeight + 10 + 'px';
+          style.top= config.inputHeight + 22 + 'px';
         } else if(elPos.y > config.inputHeight + config.boxHeight) {
           style.top = elPos.y - (config.inputHeight + config.boxHeight - 5) + 'px';
         }
@@ -272,6 +275,10 @@
             }
             var emojiver = document.querySelector('.emojiver');
             _toggleClass(emojiver, 'is-open');
+            _toggleClass(toggle, 'is-active');
+
+            // focus input to send message
+            el.focus();
           }
 
           // emojiItem
@@ -361,8 +368,6 @@
         emojiver.style.width = typeof config.boxWidth === 'number' ? config.boxWidth + 'px' : config.boxWidth;
         emojiver.style.height = typeof config.boxHeight === 'number' ? config.boxHeight + 'px' : config.boxHeight;
 
-        _positionWidget(el, config);
-
         var first = document.querySelector('.emojiver__category[data-category="people"]');
         var firstMenu = document.querySelector('.emojiver__header__menu[data-category="people"]');
 
@@ -370,6 +375,7 @@
         _toggleClassRemoveSiblings(firstMenu, 'is-active');
 
         // set emojiver widget style
+        _setStyle(emojiver, _positionWidget(toggle, config)); // set top left
         _setStyle(emojiver, config.style);
 
         _toggleClass(emojiver, 'is-open');
@@ -386,7 +392,7 @@
     // emoji name replacer
     // TODO enable custom replacer
     function _replacer(name, cf) {
-      var cf = cf != undefined ? cf.style : defaultConfig.renderStyle;
+      var cf = cf != undefined ? cf : {};
       var replacerStyle = cf.style;
       var config = defaultConfig;
 
@@ -396,7 +402,7 @@
 
       name = name.replace(/\:/g, "");
 
-      if(cf != undefined && cf.mode === 'render') {
+      if(cf.mode === 'render') {
         return document.createTextNode(ed[edNames[name][0]][1]);
       }
 
