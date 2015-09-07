@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="../dist/js/emojiver.js"></script>
+  <link rel="stylesheet" href="../dist/css/emojiver.css">
+</head>
+<body>
+  <a id="demo_render">Render</a>
+  <div id="demo_rendered" style="height: 350px;"></div>
+  <input type="text" id="demo_input" style="height: 38px;">
+
+  <script>
+    emojiver.init(document.getElementById('demo_input'), {
+      mode: 'name',
+      height: 38,
+      position: 'top',
+      sheetUrl: '../dist/img/sheet_apple_64.png',
+      iconUrl: '../dist/img/emoji-icon.png'
+    });
+
+    document.getElementById('demo_render').onclick = function() {
+      var demoInput = document.getElementById('demo_input');
+
+      var value = demoInput.value;
+
+      var rendered = emojiver.renderToTarget(value, document.getElementById('demo_rendered'));
+    }
+  </script>
+</body>
+</html>
