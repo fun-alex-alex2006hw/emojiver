@@ -397,6 +397,7 @@
       var config = defaultConfig;
 
       // check passed name is valid
+      console.log(edNames);
       if(!edNames.hasOwnProperty(name.replace(/\:/g, "")))
         return document.createTextNode(name);
 
