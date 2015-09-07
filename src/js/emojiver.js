@@ -303,7 +303,6 @@
         content.appendChild(category); 
 
         var menu = document.createElement('a');
-        var iconFactor = 100 / 9;
         menu.className = 'emojiver__header__menu';
         menu.dataset.category = f.toLowerCase();
 
@@ -397,6 +396,7 @@
       var config = defaultConfig;
 
       // check passed name is valid
+      console.log(edNames);
       if(!edNames.hasOwnProperty(name.replace(/\:/g, "")))
         return document.createTextNode(name);
 
@@ -434,7 +434,7 @@
     }    
     function renderToTarget(text, targetEl, config) {
       text.replace(eRegex, function(match) {
-        if(/\:\w+\:/g.test(match)) {
+        if(/\:[a-zA-Z0-9-]+\:/g.test(match)) {
           // test emoji string like " :smile: "
           targetEl.appendChild(_replacer(match, config));
         } else {
@@ -448,7 +448,7 @@
     function render(text, config) {
       var tempEl = document.createElement('div');
       text.replace(eRegex, function(match) {
-        if(/\:\w+\:/g.test(match)) {
+        if(/\:[a-zA-Z0-9-]+\:/g.test(match)) {
           // test emoji string like " :smile: "
           tempEl.appendChild(_replacer(match, config));
         } else {
