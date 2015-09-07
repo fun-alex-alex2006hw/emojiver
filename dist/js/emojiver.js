@@ -197,7 +197,11 @@
     iconUrl: "./emoji-icon.png",
     style: {
     },
-    toggleStyle: {}
+    toggleStyle: {},
+    renderStyle: {
+      width: 16,
+      height: 16
+    }
   };
 
 
@@ -266,6 +270,8 @@
             } else if(config.mode === 'render') {
               el.value += render;
             }
+            var emojiver = document.querySelector('.emojiver');
+            _toggleClass(emojiver, 'is-open');
           }
 
           // emojiItem
@@ -368,6 +374,9 @@
 
         _toggleClass(emojiver, 'is-open');
         _toggleClass(toggle, 'is-active');
+
+        var firstIcon = firstMenu.children[0];
+        _toggleMenu(firstIcon, '.emojiver__header__menuIcon');
       };
 
       _insertAfter(toggle, el);
@@ -377,6 +386,7 @@
     // emoji name replacer
     // TODO enable custom replacer
     function _replacer(name, cf) {
+      var cf = cf != undefined ? cf.style : defaultConfig.renderStyle;
       var replacerStyle = cf.style;
       var config = defaultConfig;
 
@@ -386,8 +396,7 @@
 
       name = name.replace(/\:/g, "");
 
-      if(cf.mode === 'render') {
-        // return rendered(true emoji)
+      if(cf != undefined && cf.mode === 'render') {
         return document.createTextNode(ed[edNames[name][0]][1]);
       }
 
@@ -403,6 +412,7 @@
         display: 'inline-block',
         backgroundSize: config.sheetSize + '00%'
       }
+
       // support custom emoji span size
       if(!_isEmpty(cf.style)) {
         if('width' in cf.style) 
@@ -410,6 +420,7 @@
         if('height' in cf.style) 
           cf.style.height = typeof cf.style.height === 'number' ? cf.style.height + 'px' : cf.style.height;
       }
+
       style = _extend(style, replacerStyle);
       _setStyle(emoji, style);
       emoji.innerHTML = ':' + name + ':';

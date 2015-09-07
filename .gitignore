@@ -2,3 +2,7 @@ node_modules/
 bower_components/
 .DS_STORE
 .sass-cache/
+
+# vi
+*.swp
+*.swo
