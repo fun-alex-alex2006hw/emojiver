@@ -2,10 +2,13 @@
   "name": "emojiver",
   "version": "0.0.1",
   "authors": [
-    "jacob <jacob.kim@smilefam.com>"
+    "jacob kim <jacob.kim@smilefam.com>"
   ],
-  "description": "Emoji Supporter",
-  "main": "emojive.js",
+  "description": "Emoji Enabler",
+  "main": [
+    "./dist/js/emojive.js",
+    "./dist/css/emojiver.css"
+  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -14,7 +17,10 @@
     "test",
     "tests"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/smilefam/emojiver.git"
+  },
   "dependencies": {
-    "normalize-scss": "~3.0.3"
   }
 }
