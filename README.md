@@ -76,7 +76,7 @@ document.getElementById('demo_input').onkeydown = function(e) {
 ##Config
 
 ex) emojiver.render(text, config); / emojiver.renderToTarget(text, target, config);
-```json
+```
 {
     mode: 'name', // choices = ['name', 'render']
     position: 'top', // choices = ['top', 'left', 'right', 'bottom']
