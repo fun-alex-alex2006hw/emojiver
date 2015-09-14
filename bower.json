@@ -6,7 +6,7 @@
   ],
   "description": "Emoji Enabler",
   "main": [
-    "./dist/js/emojive.js",
+    "./dist/js/emojiver.js",
     "./dist/css/emojiver.css"
   ],
   "license": "MIT",
