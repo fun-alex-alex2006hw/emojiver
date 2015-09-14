@@ -442,6 +442,7 @@
           if(/(https?|ftp|file):\/\/[a-z0-9-_.]+(:[0-9]+|)(\/.*)?/ig.test(match)) {
             var anchorNode = document.createElement('a');
             anchorNode.setAttribute('href', match);
+            anchorNode.setAttribute('target', '_blank');
             anchorNode.innerHTML = match;
             targetEl.appendChild(anchorNode);
           } else {
@@ -462,6 +463,7 @@
           if(/(https?|ftp|file):\/\/[a-z0-9-_.]+(:[0-9]+|)(\/.*)?/ig.test(match)) {
             var anchorNode = document.createElement('a');
             anchorNode.setAttribute('href', match);
+            anchorNode.setAttribute('target', '_blank');
             anchorNode.innerHTML = match;
             tempEl.appendChild(anchorNode);
           } else {
