@@ -392,9 +392,8 @@
     // emoji name replacer
     // TODO enable custom replacer
     function _replacer(name, cf) {
-      var cf = cf != undefined ? cf : {};
+      var cf = _extend(defaultConfig, cf);
       var replacerStyle = cf.style;
-      var config = defaultConfig;
 
       // check passed name is valid
       if(!edNames.hasOwnProperty(name.replace(/\:/g, "")))
@@ -407,16 +406,16 @@
       }
 
       var emoji = document.createElement('span');
-      var posFactor = config.getFactor(config.sheetSize);
+      var posFactor = cf.getFactor(cf.sheetSize);
       var sX = edNames[name][1], sY = edNames[name][2];
       var style = {
         width: '22px',
         height: '22px',
-        background: 'url("' + config.sheetUrl + '")',
+        background: 'url("' + cf.sheetUrl + '")',
         backgroundPosition: posFactor * sX + '% ' + posFactor * sY + '%',
         textIndent: '-9999px',
         display: 'inline-block',
-        backgroundSize: config.sheetSize + '00%'
+        backgroundSize: cf.sheetSize + '00%'
       }
 
       // support custom emoji span size
