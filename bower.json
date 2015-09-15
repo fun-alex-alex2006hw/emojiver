@@ -1,8 +1,8 @@
 {
   "name": "emojiver",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "authors": [
-    "jacob kim <jacob.kim@smilefam.com>"
+    "Jacob Kim <jacob@jiver.io, astyfx@gmail.com>"
   ],
   "description": "Emoji Enabler",
   "main": [

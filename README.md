@@ -74,9 +74,8 @@ document.getElementById('demo_input').onkeydown = function(e) {
 ```
 
 ##Config
+ex) emojiver.init(element, config);
 
-ex) emojiver.render(text, config); / emojiver.renderToTarget(text, target, config);
-```
 {
     mode: 'name', // choices = ['name', 'render']
     position: 'top', // choices = ['top', 'left', 'right', 'bottom']
@@ -93,6 +92,13 @@ ex) emojiver.render(text, config); / emojiver.renderToTarget(text, target, confi
     style: { // emoji popup style
     },
     toggleStyle: {}, // toggle button style
+}
+
+ex) emojiver.render(text, config); / emojiver.renderToTarget(text, target, config);
+```
+{
+    sheetSize: 35, // 3500% , sheet image background size that multiplied by 100
+    sheetUrl: "./sheet_apple_64.png", // emoji sheet path
     renderStyle: { // rendered emoji image size
       width: 16,
       height: 16

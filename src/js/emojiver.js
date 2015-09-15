@@ -393,7 +393,7 @@
     // TODO enable custom replacer
     function _replacer(name, cf) {
       var cf = _extend(defaultConfig, cf);
-      var replacerStyle = cf.style;
+      var replacerStyle = cf.renderStyle;
 
       // check passed name is valid
       if(!edNames.hasOwnProperty(name.replace(/\:/g, "")))
@@ -433,7 +433,6 @@
     }    
     function renderToTarget(text, targetEl, config) {
       text.replace(eRegex, function(match) {
-        console.log(match);
         if(/\:[a-zA-Z0-9-_+]+\:/g.test(match)) {
           // test emoji string like " :smile: "
           targetEl.appendChild(_replacer(match, config));
