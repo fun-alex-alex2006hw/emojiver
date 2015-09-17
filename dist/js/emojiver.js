@@ -364,7 +364,9 @@
         menu.onmouseenter = function(e) {
           var targetMenu = document.querySelector('.emojiver__header__menu[data-title="' + this.dataset['title'] + '"]'); 
           var left = _getOffset(targetMenu).x;
-          menuTooltip.style.left = left - menuTooltip.offsetWidth / 6 + 'px';
+
+          var containerPositionLeft = _getOffset(container).x; // offset of emojiver box
+          menuTooltip.style.left = left - containerPositionLeft - menuTooltip.offsetWidth / 6 + 'px';
           menuTooltip.className = 'emojiver__header__tooltip is-on';
         }
         menu.onmouseleave = function(e) {
