@@ -349,7 +349,7 @@
         }
         var menuTooltip = document.createElement('div');
         menuTooltip.className = 'emojiver__header__tooltip';
-        menuTooltip.style.top = '-30px';
+        menuTooltip.style.top = '-32px';
 
         var menuTooltipArrow = document.createElement('div');
         menuTooltipArrow.className = "emojiver__header__tooltipArrow";
