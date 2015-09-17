@@ -123,6 +123,7 @@
     }
   }
 
+  // toggle siblings class
   function _toggleClassRemoveSiblings(el, nc) {
     var siblings = _getSiblings(el);
     siblings.forEach(function(si) {
@@ -203,8 +204,8 @@
     },
     toggleStyle: {},
     renderStyle: {
-      width: 16,
-      height: 16
+      width: 22,
+      height: 22 
     }
   };
 
@@ -306,6 +307,7 @@
         var menu = document.createElement('a');
         menu.className = 'emojiver__header__menu';
         menu.dataset.category = f.toLowerCase();
+        menu.dataset.title = f;
 
         var menuIcon = document.createElement('span');
         menuIcon.className = 'emojiver__header__menuIcon';
@@ -345,7 +347,31 @@
           _toggleClassRemoveSiblings(this, 'is-active');
           _toggleMenu(menuIcon, '.emojiver__header__menuIcon');
         }
+        var menuTooltip = document.createElement('div');
+        menuTooltip.className = 'emojiver__header__tooltip';
+        menuTooltip.style.top = '-30px';
+
+        var menuTooltipArrow = document.createElement('div');
+        menuTooltipArrow.className = "emojiver__header__tooltipArrow";
+
+        var menuTooltipInner = document.createElement('div');
+        menuTooltipInner.className = "emojiver__header__tooltipInner";
+        menuTooltipInner.innerHTML = menu.dataset['title'];
+
+        menuTooltip.appendChild(menuTooltipArrow);
+        menuTooltip.appendChild(menuTooltipInner);
+
+        menu.onmouseenter = function(e) {
+          var targetMenu = document.querySelector('.emojiver__header__menu[data-title="' + this.dataset['title'] + '"]'); 
+          var left = _getOffset(targetMenu).x;
+          menuTooltip.style.left = left - menuTooltip.offsetWidth / 6 + 'px';
+          menuTooltip.className = 'emojiver__header__tooltip is-on';
+        }
+        menu.onmouseleave = function(e) {
+          menuTooltip.className = 'emojiver__header__tooltip';
+        }
         header.appendChild(menu);
+        header.appendChild(menuTooltip);
         container.appendChild(header);
         container.appendChild(content);
       });
@@ -419,11 +445,11 @@
       }
 
       // support custom emoji span size
-      if(!_isEmpty(cf.style)) {
-        if('width' in cf.style) 
-          cf.style.width = typeof cf.style.width === 'number' ? cf.style.width + 'px' : cf.style.width;
-        if('height' in cf.style) 
-          cf.style.height = typeof cf.style.height === 'number' ? cf.style.height + 'px' : cf.style.height;
+      if(!_isEmpty(cf.renderStyle)) {
+        if('width' in cf.renderStyle) 
+          cf.renderStyle.width = typeof cf.renderStyle.width === 'number' ? cf.renderStyle.width + 'px' : cf.renderStyle.width;
+        if('height' in cf.renderStyle) 
+          cf.renderStyle.height = typeof cf.renderStyle.height === 'number' ? cf.renderStyle.height + 'px' : cf.renderStyle.height;
       }
 
       style = _extend(style, replacerStyle);
